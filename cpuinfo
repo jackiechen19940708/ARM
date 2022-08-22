@@ -1,0 +1,8 @@
+https://developer.arm.com/documentation/100095/0002/system-control/aarch64-register-descriptions/main-id-register--el1
+
+CPU implementer: Your code means ARM;
+CPU architecture: AArch64 means 64 bit ARM board:
+CPU variant : Indicates the variant number of the processor, or "major revision". Yours is zero.
+CPU part: Part number. 0xd03 indicates Cortex-A53 processor.
+CPU revision: Indicates patch release or "minor revision". 3, in your case
+Hardware    : HiKey Development Board is self explanatory
