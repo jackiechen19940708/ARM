@@ -6,3 +6,53 @@ CPU variant : Indicates the variant number of the processor, or "major revision"
 CPU part: Part number. 0xd03 indicates Cortex-A53 processor.
 CPU revision: Indicates patch release or "minor revision". 3, in your case
 Hardware    : HiKey Development Board is self explanatory
+
+https://kunpengcompute.github.io/2020/04/03/arm-cpu-vendor-ji-part-id-ying-she-guan-xi-chi-xu-geng-xin/
+ARM CPU Vendor 及 Part ID 映射关系（持续更新）
+作者：郑振宇
+
+根据ARM CPU官方技术手册，ARM CPU的CPU型号、Vendor、版本等信息存于MIDR_EL1寄存器中:
+MIDR
+MIDR
+
+其中从低至高第0-3 bit表示revision，代表固件版本的小版本号，如r1p3中的p3；
+第4-15 bit表示part number(id)，代表这款CPU在所在vendor产品中定义的产品代码，如在HiSilicon产品中，part_id=0xd01代表Kunpeng-920芯片；
+第16-19 bit表示architecture，即架构版本，0x8即ARMv8；
+第20-23 bit表示variant，即固件版本的大版本号，如r1p3中的r1；
+第24-31 bit表示implementer，即vendor id，如vendor_id=0x48表示HiSilicon。
+
+想要知道一款ARM CPU的具体型号，则需要首先解析vendor_id(implementer) 然后再在该Vendor的所有型号中匹配part_id，才能获取到具体的信息；这里列出目前系统中已有的Vendor列表和其ID对应关系，以及主流厂商的主要型号映射关系：
+
+Vendor映射关系：
+Vendor Name	Vendor ID
+ARM	0x41
+Broadcom	0x42
+Cavium	0x43
+DigitalEquipment	0x44
+HiSilicon	0x48
+Infineon	0x49
+Freescale	0x4D
+NVIDIA	0x4E
+APM	0x50
+Qualcomm	0x51
+Marvell	0x56
+Intel	0x69
+型号映射关系
+ARM
+Part ID	Model Name
+0xd03	Cortex-a53
+0xd07	Cortex-a57
+0xd08	Cortex-a72
+Broadcom
+Part ID	Model Name
+0x0f	Brahma B15
+0x100	Brahma B53
+Cavium
+Part ID	Model Name
+0x0af	Thunder X2 29xx
+Qualcomm
+Part ID	Model Name
+0xc00	Falkor
+HiSilicon
+Part ID	Model Name
+0xd01	Kunpeng-920
